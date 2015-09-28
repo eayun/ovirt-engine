@@ -35,7 +35,7 @@
         }
 
         .wrapper {
-            padding: 11px;
+            padding: 100px;
         }
 
         .searchLabel {
@@ -69,7 +69,7 @@
         }
 
         .searchBoxMiddleSearchString td {
-            outline: 1px gray solid;
+            outline: 0px gray solid;
         }
 
         .searchStringPrefixLabel {
@@ -93,21 +93,35 @@
             border: none;
             outline: none;
             font-size: 14px;
-            height: 25px;
+            height: 35px;
             line-height: 25px;
             width: 100% !important;
+	    background-color:#808080;
         }
 
         .searchBoxClear, .searchBoxBookmark, .searchBoxSearch {
             width: 30px;
-            height: 25px;
-            background-color: #fff;
+            height: 35px;
+            background-color: #808080;
             outline: 1px gray solid;
             text-align: center;
             float: left;
-            padding-top: 3px;
+            padding-top: 7px;
             cursor: pointer;
+	    color:#e3e3e3;
         }
+
+
+	.searchLeftRadius{
+            border-top-left-radius: 16px;
+            border-bottom-left-radius: 16px;
+        }
+
+        .searchRightRadius{
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+
+
 
         .searchBoxPanelContainer {
             width: 100%;
@@ -127,7 +141,7 @@
                         <g:Label ui:field="searchStringPrefixLabel" addStyleNames="{style.searchStringPrefixLabel} {style.openSans} spv_searchStringPrefixLabel_pfly_fix" />
                     </g:HorizontalPanel>
                     <g:HorizontalPanel addStyleNames="{style.searchBoxMiddleSearchString}">
-                        <g:SuggestBox ui:field="searchStringInput" addStyleNames="{style.searchSuggestBox} {style.openSans}" />
+                        <g:SuggestBox ui:field="searchStringInput" addStyleNames="{style.searchSuggestBox} {style.openSans} {style.searchLeftRadius}" />
                     </g:HorizontalPanel>
                 </g:HorizontalPanel>
             </g:VerticalPanel>
@@ -141,7 +155,7 @@
                 <g:InlineHTML addStyleNames="glyphicon glyphicon-star-empty"></g:InlineHTML>
             </g:FocusPanel>
 
-            <g:FocusPanel ui:field="searchBoxSearch" addStyleNames="{style.searchBoxSearch}">
+            <g:FocusPanel ui:field="searchBoxSearch" addStyleNames="{style.searchBoxSearch} {style.searchRightRadius}">
                 <g:InlineHTML addStyleNames="glyphicon glyphicon-search"></g:InlineHTML>
             </g:FocusPanel>
         </g:HorizontalPanel>
