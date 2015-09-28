@@ -13,6 +13,8 @@
         }
 
         .scrollPanel {
+	    padding-top: 17px;
+	    background-color: white;
             float: left;
             overflow: hidden;
         }
