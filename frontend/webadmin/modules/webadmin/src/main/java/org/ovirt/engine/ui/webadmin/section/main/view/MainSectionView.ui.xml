@@ -88,7 +88,7 @@
 		@external gwt-SplitLayoutPanel-HDragger;
 		@external gwt-SplitLayoutPanel-VDragger;
 		.gwt-SplitLayoutPanel-HDragger {
-			background-color: #888888;
+			background-color: #white;
 		}
 
 		.gwt-SplitLayoutPanel-VDragger {
@@ -100,19 +100,20 @@
 		.gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader {
 			font-family: Arial, sans-serif;
 			font-size: 14px;
-			color: #333333;
+			color: #e3e3e3;
 			padding-top: 0px;
 			padding-left: 8px;
-			border-top: 5px solid #f0f0f0;
-			border-bottom: 1px solid #d5d5d5;
+			border-top: 0px solid #808080;
+			border-bottom: 0px solid #d5d5d5;
 			border-left: 0px;
 			border-right: 0px;
-			background: #FFFFFF;
+			background: #808080;
 		}
 		
 		.gwt-StackLayoutPanel .gwt-StackLayoutPanelContent {
 			border: 0px;
 			padding: 2px;
+			background-color: #5c5c5c;
 		}
 		
 		.alertEventFooterPanel {
@@ -128,7 +129,7 @@
 			<g:SplitLayoutPanel ui:field="verticalSplitLayoutPanel">
 				<g:center>
 					<g:SplitLayoutPanel ui:field="horizontalSplitLayoutPanel">
-						<g:west size="235">
+						<g:west size="253">
 							<g:StackLayoutPanel ui:field="westStackPanel" />
 						</g:west>
 
