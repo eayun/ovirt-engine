@@ -18,12 +18,12 @@
 }
 
 .navbar-pf {
-  background: #393f45;
+  background: #242527;
   border-top: 3px solid #43a103;
 }
 
 .navbar-pf .navbar-header {
-  border-bottom: 1px solid #5c656f;
+  border-bottom: 0px solid #5c656f;
 }
 
 .navbar-pf .navbar-nav > .active > a,
@@ -78,7 +78,8 @@
 }
 
 .navbar-pf .navbar-utility {
-  border-bottom: 1px solid #5c656f;
+  border-bottom: 0px solid #5c656f;
+padding: 23px 0px 0px;
 }
 
 @media (max-width: 767px) {
@@ -150,7 +151,7 @@
   }
 
   .navbar-pf .navbar-utility > li > a {
-    border-left: 1px solid #5d6770;
+    border-left: 0px solid #5d6770;
   }
 
   .navbar-pf .navbar-utility > li > a:hover {
