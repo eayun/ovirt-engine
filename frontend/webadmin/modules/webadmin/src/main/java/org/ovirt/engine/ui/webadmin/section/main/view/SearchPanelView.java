@@ -94,7 +94,7 @@ public class SearchPanelView extends AbstractView implements SearchPanelPresente
 
         searchStringInput.setSearchBoxPanel(searchBoxPanel);
 
-        searchPanelContainer.setCellWidth(searchBoxPanel, "1000px"); //$NON-NLS-1$
+        searchPanelContainer.setCellWidth(searchBoxPanel, "654px"); //$NON-NLS-1$
 
         ViewIdHandler.idHandler.generateAndSetIds(this);
     }
