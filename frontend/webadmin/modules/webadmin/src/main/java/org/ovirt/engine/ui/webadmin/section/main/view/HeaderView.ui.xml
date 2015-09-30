@@ -45,7 +45,13 @@
 
             <div class="collapse navbar-collapse navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-utility">
-                    <li class="dropdown">
+
+			<li>
+				<g:SimplePanel ui:field="searchPanelContainer" addStyleNames="{style.gradientFix}" />
+			</li>
+		     <li class="dropdown">
+
+
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="pficon pficon-user {style.topLinks}"></span>
                             <g:InlineLabel ui:field="userNameLabel" addStyleNames="{style.topLinks}" /> <b class="caret"></b>
@@ -74,7 +80,11 @@
                 </ul>
 
                 <g:HTMLPanel>
-                    <g:SimplePanel ui:field="searchPanelContainer" addStyleNames="{style.gradientFix}" />
+
+
+		    <div style="padding: 10px;"></div>
+
+
                     <g:SimplePanel ui:field="mainTabContainer" addStyleNames="{style.tabContainer}" />
                 </g:HTMLPanel>
             </div>

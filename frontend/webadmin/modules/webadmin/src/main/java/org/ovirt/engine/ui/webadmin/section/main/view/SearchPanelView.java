@@ -43,7 +43,7 @@ public class SearchPanelView extends AbstractView implements SearchPanelPresente
 
         String searchBoxClear_HasSelectedTags();
 
-    }
+    } 
 
     @UiField
     Label searchStringPrefixLabel;

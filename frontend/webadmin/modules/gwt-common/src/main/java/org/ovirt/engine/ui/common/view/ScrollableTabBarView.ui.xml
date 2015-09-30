@@ -15,7 +15,13 @@
         .scrollPanel {
             float: left;
             overflow: hidden;
-        }
+	    padding-top: 0px; 
+            background-color: white;
+     }
+
+
+
+
 
         .scrollContainer {
             position: relative;

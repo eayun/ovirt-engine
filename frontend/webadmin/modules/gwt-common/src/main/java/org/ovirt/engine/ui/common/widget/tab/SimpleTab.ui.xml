@@ -23,7 +23,7 @@
         }
 
         .inactiveLeft {
-            background-image: url(images/main_tab_left.png);
+
         }
 
         .right {
@@ -37,7 +37,7 @@
         }
 
         .inactiveRight {
-            background-image: url(images/main_tab_right.png);
+
         }
 
         .middle {
@@ -55,7 +55,7 @@
         }
 
         .obrand_inactiveMiddle {
-            background-image: url(images/main_tab_middle.png);
+
         }
 
         .middleLink {
