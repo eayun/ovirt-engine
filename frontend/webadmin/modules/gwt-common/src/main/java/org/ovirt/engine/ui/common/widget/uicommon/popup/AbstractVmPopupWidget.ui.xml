@@ -287,6 +287,10 @@
             width: 280px !important;
         }
 
+        .breakWord {
+            word-wrap: break-word;
+        }
+
         .headerPanel {
             padding-bottom: 6px;
         }
