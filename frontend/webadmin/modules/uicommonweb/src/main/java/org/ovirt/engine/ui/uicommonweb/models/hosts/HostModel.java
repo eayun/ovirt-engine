@@ -609,7 +609,7 @@ public abstract class HostModel extends Model implements HasValidatedTabs {
         getUpdateHostsCommand().setIsExecutionAllowed(false);
 
         setDisableAutomaticPowerManagement(new EntityModel<Boolean>());
-        getDisableAutomaticPowerManagement().setEntity(false);
+        getDisableAutomaticPowerManagement().setEntity(true);
         setPmKdumpDetection(new EntityModel<Boolean>());
         getPmKdumpDetection().setEntity(true);
 

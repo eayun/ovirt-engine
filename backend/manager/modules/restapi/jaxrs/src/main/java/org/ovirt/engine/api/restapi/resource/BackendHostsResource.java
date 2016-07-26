@@ -92,6 +92,7 @@ public class BackendHostsResource extends AbstractBackendCollectionResource<Host
         validateParameters(host, "name", "address");
         VdsStatic staticHost = getMapper(Host.class, VdsStatic.class).map(host, null);
         staticHost.setVdsGroupId(getClusterId(host));
+        staticHost.setDisablePowerManagementPolicy(true);
         AddVdsActionParameters addParams = new AddVdsActionParameters(staticHost, host.getRootPassword());
         if (host.isSetOverrideIptables()) {
             addParams.setOverrideFirewall(host.isOverrideIptables());
