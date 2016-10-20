@@ -634,7 +634,7 @@ public class HostSetupNetworksModel extends EntityModel<VDS> {
             popupWindow = bondPopup;
         } else if (networkCommand.getOp1() == getNewNetworkLabelModel()) {
             final SetupNetworksLabelModel labelPopup = new SetupNetworksLabelModel(dcLabels);
-            labelPopup.getCommands().add(new UICommand("OK", new BaseCommandTarget() { //$NON-NLS-1$
+            labelPopup.getCommands().add(new UICommand(ConstantsManager.getInstance().getConstants().ok(), new BaseCommandTarget() { //$NON-NLS-1$
 
                         @Override
                         public void executeCommand(UICommand uiCommand) {
