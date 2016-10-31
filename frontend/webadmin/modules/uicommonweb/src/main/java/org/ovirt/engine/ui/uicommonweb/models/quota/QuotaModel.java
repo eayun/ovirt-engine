@@ -396,7 +396,7 @@ public class QuotaModel extends EntityModel<Quota> {
                 getThresholdCluster().getIsValid() &
                 getThresholdStorage().getIsValid();
 
-        return getName().getIsValid() & graceThreshold & validateNotEmpty();
+        return getName().getIsValid() & getDescription().getIsValid() & graceThreshold & validateNotEmpty();
     }
 
     static final IValidation quotaEmptyValidation = new IValidation() {
