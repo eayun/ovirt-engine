@@ -790,6 +790,7 @@ public class DataCenterListModel extends ListWithDetailsAndReportsModel<Void, St
                 },
                 this);
         }
+        updateDetailsAvailability();
     }
 
     public void postOnSaveInternal(VdcReturnValueBase returnValue) {
