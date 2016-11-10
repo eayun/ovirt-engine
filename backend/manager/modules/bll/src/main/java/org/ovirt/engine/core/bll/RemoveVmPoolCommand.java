@@ -85,6 +85,12 @@ public class RemoveVmPoolCommand<T extends VmPoolParametersBase> extends VmPoolC
         return locks;
     }
 
+    @Override
+    protected void setActionMessageParameters() {
+        addCanDoActionMessage(EngineMessage.VAR__ACTION__REMOVE);
+        addCanDoActionMessage(EngineMessage.VAR__TYPE__DESKTOP_POOL);
+    }
+
     private void addVmLocks(VM vm, Map<String, Pair<String, String>> locks) {
         locks.put(vm.getId().toString(),
                 LockMessagesMatchUtil.makeLockingPair(LockingGroup.VM, getVmIsBeingRemovedMessage(vm)));
