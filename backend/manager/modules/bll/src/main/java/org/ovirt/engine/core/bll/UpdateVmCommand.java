@@ -90,6 +90,7 @@ import org.ovirt.engine.core.dao.provider.ProviderDao;
 import org.ovirt.engine.core.di.Injector;
 import org.ovirt.engine.core.utils.linq.LinqUtils;
 import org.ovirt.engine.core.utils.linq.Predicate;
+import org.ovirt.engine.core.utils.transaction.TransactionCompletionListener;
 
 public class UpdateVmCommand<T extends VmManagementParametersBase> extends VmManagementCommandBase<T>
         implements QuotaVdsDependent, RenamedEntityInfoProvider{
@@ -98,6 +99,8 @@ public class UpdateVmCommand<T extends VmManagementParametersBase> extends VmMan
 
     @Inject
     private ProviderDao providerDao;
+    @Inject
+    private VmSlaPolicyUtils vmSlaPolicyUtils;
 
     private VM oldVm;
     private boolean quotaSanityOnly = false;
@@ -166,6 +169,21 @@ public class UpdateVmCommand<T extends VmManagementParametersBase> extends VmMan
         newVmStatic = getParameters().getVmStaticData();
         newVmStatic.setCreationDate(oldVm.getStaticData().getCreationDate());
 
+        // Trigger OVF update for hosted engine VM only
+        if (getVm().isHostedEngine()) {
+            registerRollbackHandler(new TransactionCompletionListener() {
+                @Override
+                public void onSuccess() {
+                    OvfDataUpdater.getInstance().triggerNow();
+                }
+
+                @Override
+                public void onRollback() {
+                    // No notification is needed
+                }
+            });
+        }
+
         // save user selected value for hotplug before overriding with db values (when updating running vm)
         int cpuPerSocket = newVmStatic.getCpuPerSocket();
         int numOfSockets = newVmStatic.getNumOfSockets();
@@ -205,7 +223,15 @@ public class UpdateVmCommand<T extends VmManagementParametersBase> extends VmMan
         VmHandler.updateVmInitToDB(getParameters().getVmStaticData());
 
         checkTrustedService();
+        liveUpdateCpuProfile();
         setSucceeded(true);
+    }
+
+    private void liveUpdateCpuProfile(){
+        if (getVm().getStatus().isQualifiedForQosChange() &&
+                !Objects.equals(oldVm.getCpuProfileId(), newVmStatic.getCpuProfileId())) {
+            vmSlaPolicyUtils.refreshCpuQosOfRunningVm(getVm());
+        }
     }
 
     private void updateVmHostDevices() {
@@ -822,8 +848,11 @@ public class UpdateVmCommand<T extends VmManagementParametersBase> extends VmMan
             return failCanDoAction(EngineMessage.ACTION_TYPE_FAILED_MIN_MEMORY_CANNOT_EXCEED_MEMORY_SIZE);
         }
 
-        if (!Objects.equals(vmFromDB.getCpuProfileId(), vmFromParams.getCpuProfileId()) && !setAndValidateCpuProfile()) {
-            return false;
+        if (vmFromParams.getCpuProfileId() == null ||
+                !Objects.equals(vmFromDB.getCpuProfileId(), vmFromParams.getCpuProfileId())) {
+            if (!setAndValidateCpuProfile()) {
+                return false;
+            }
         }
 
         if (isBalloonEnabled() && !osRepository.isBalloonEnabled(getParameters().getVmStaticData().getOsId(),
@@ -934,7 +963,14 @@ public class UpdateVmCommand<T extends VmManagementParametersBase> extends VmMan
                         getParameters().getVmStaticData(),
                         getVm().getStatus(),
                         isHotSetEnabled())
-                || !VmHandler.isUpdateValidForVmDevices(getVmId(), getVm().getStatus(), getParameters());
+                || !VmHandler.isUpdateValidForVmDevices(getVmId(), getVm().getStatus(), getParameters())
+                || isClusterLevelChange();
+    }
+
+    private boolean isClusterLevelChange() {
+        Version newVersion = getParameters().getClusterLevelChangeToVersion();
+        return newVersion != null &&
+                (getVm().isRunningOrPaused() || getVm().isSuspended());
     }
 
     private boolean isHotSetEnabled() {

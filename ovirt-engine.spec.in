@@ -368,7 +368,7 @@ Requires:	mailcap
 Requires:	mod_ssl
 Requires:	novnc
 Requires:	openssh
-Requires:	vdsm-jsonrpc-java >= 1.1.12
+Requires:	vdsm-jsonrpc-java >= 1.1.16
 Requires:	openssl
 Requires:	ovirt-engine-extension-aaa-jdbc
 Requires:	ovirt-host-deploy-java >= 1.4.0
@@ -678,7 +678,7 @@ Requires:	%{name}-setup-plugin-ovirt-engine = %{version}-%{release}
 Requires:	openssh-server
 Requires:	ovirt-host-deploy >= 1.4.0
 Requires:	ovirt-host-deploy-offline >= 1.4.0
-Requires:	vdsm-jsonrpc-java >= 1.1.12
+Requires:	vdsm-jsonrpc-java >= 1.1.16
 
 %description setup-plugin-allinone
 All-in-one plugin for %{ovirt_product_name_short}'s setup
@@ -1316,13 +1316,28 @@ fi
 %{engine_data}/bin/engine-backup.sh
 
 %changelog
-* Tue Jul  5 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 3.6.8-1
+* Tue Nov 08 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 3.6.10-1
+- Bump version to 3.6.10
+
+* Tue Sep 13 2016 Lev Veyde <lveyde@redhat.com> - 3.6.9.2-1
+- Bump version to 3.6.9.2
+
+* Wed Sep 07 2016 Rafael Martins <rmartins@redhat.com> - 3.6.9.1-1
+- Bump version to 3.6.9.1
+
+* Mon Aug 22 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 3.6.9-1
+- Bump version to 3.6.9
+
+* Mon Jul 18 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 3.6.8.1-1
+- Bump version to 3.6.8.1
+
+* Tue Jul 05 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 3.6.8-1
 - Bump version to 3.6.8
 
-* Fri May  6 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 3.6.6.2-1
+* Fri May 06 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 3.6.6.2-1
 - Bump version to 3.6.6.2
 
-* Tue May  3 2016 Rafael Martins <rmartins@redhat.com> - 3.6.6.1-1
+* Tue May 03 2016 Rafael Martins <rmartins@redhat.com> - 3.6.6.1-1
 - Bump version to 3.6.6.1
 
 * Mon Apr 25 2016 Rafael Martins <rmartins@redhat.com> - 3.6.6-1

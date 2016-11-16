@@ -1,6 +1,7 @@
 package org.ovirt.engine.core.bll;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,6 +29,8 @@ import org.ovirt.engine.core.dao.DiskImageDao;
 import org.ovirt.engine.core.dao.VmDao;
 import org.ovirt.engine.core.dao.profiles.CpuProfileDao;
 import org.ovirt.engine.core.dao.profiles.DiskProfileDao;
+import org.ovirt.engine.core.dao.qos.CpuQosDao;
+import org.ovirt.engine.core.dao.qos.StorageQosDao;
 import org.ovirt.engine.core.utils.threadpool.ThreadPoolUtil;
 
 @Singleton
@@ -43,10 +46,16 @@ public class VmSlaPolicyUtils {
     private DiskImageDao diskImageDao;
 
     @Inject
+    private CpuQosDao cpuQosDao;
+
+    @Inject
     private DiskDao diskDao;
 
     @Inject
     private VmDao vmDao;
+
+    @Inject
+    private StorageQosDao storageQosDao;
 
     @Inject
     private BackendInternal backend;
@@ -129,7 +138,31 @@ public class VmSlaPolicyUtils {
                 newQos);
     }
 
+    /**
+     * Refresh CPU QoS of a running VM.
+     */
+    public void refreshCpuQosOfRunningVm(VM vm) {
+        if (!vm.getStatus().isQualifiedForQosChange()) {
+            // It only makes sense to try a QoS live change on a running VM.
+            throw new IllegalArgumentException(
+                    String.format("VM %s is not running. Can't perform a live QoS upgrade", vm.getId())
+            );
+        }
+        Guid vmId = vm.getId();
+        List<Guid> vmIds = Arrays.asList(vmId);
+        CpuQos cpuQos = cpuQosDao.getCpuQosByVmIds(vmIds).get(vmId);
+        if (cpuQos == null) {
+            refreshVmsCpuQos(Arrays.asList(vmId), new CpuQos());
+        } else {
+            refreshVmsCpuQos(Arrays.asList(vmId), cpuQos);
+        }
+    }
+
     public void refreshVmsStorageQos(Map<Guid, List<DiskImage>> vmDiskMap, StorageQos newQos) {
+        // No QoS means default QoS which means unlimited
+        if (newQos == null) {
+            newQos = new StorageQos();
+        }
         for (Map.Entry<Guid, List<DiskImage>> entry : vmDiskMap.entrySet()) {
             final VmSlaPolicyParameters cmdParams = new VmSlaPolicyParameters(entry.getKey());
 
@@ -149,9 +182,10 @@ public class VmSlaPolicyUtils {
         refreshVmsStorageQos(getRunningVmDiskImageMapWithQos(storageQosId), newQos);
     }
 
-    public void refreshRunningVmsWithDiskProfile(Guid diskProfileId, StorageQos newQos) {
+    public void refreshRunningVmsWithDiskProfile(Guid diskProfileId) {
         refreshVmsStorageQos(
                 getRunningVmDiskImageMapWithProfiles(Collections.singleton(diskProfileId)),
-                newQos);
+                storageQosDao.getQosByDiskProfileId(diskProfileId)
+        );
     }
 }

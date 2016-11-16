@@ -1342,9 +1342,6 @@ public interface AppErrors extends ConstantsWithLookup {
     @DefaultStringValue("Cannot add Cluster with Compatibility Version that is lower than the Data Center Compatibility Version.\n-Please upgrade your Cluster to a later Compatibility version first.")
     String VDS_GROUP_CANNOT_ADD_COMPATIBILITY_VERSION_WITH_LOWER_STORAGE_POOL();
 
-    @DefaultStringValue("Cannot change Cluster Compatibility Version when a VM is active. Please shutdown all VMs in the Cluster.")
-    String VDS_GROUP_VERSION_CANNOT_UPDATE_WHEN_ACTIVE_VM();
-
     @DefaultStringValue("Cannot ${action} Cluster. Cluster name is already in use.")
     String VDS_GROUP_CANNOT_DO_ACTION_NAME_IN_USE();
 
@@ -2789,6 +2786,9 @@ public interface AppErrors extends ConstantsWithLookup {
     @DefaultStringValue("Cannot deactivate the management interface of the Hosted Engine VM.")
     String DEACTIVATE_MANAGEMENT_NETWORK_FOR_HOSTED_ENGINE();
 
+    @DefaultStringValue("Hosted Engine VM cannot have network interface with empty profile.")
+    String HOSTED_ENGINE_VM_CANNOT_HAVE_NIC_WITH_EMPTY_PROFILE();
+
     @DefaultStringValue("Cannot activate/deactivate interface due to VM status. The VM status must be Down or Up.")
     String ACTIVATE_DEACTIVATE_NIC_VM_STATUS_ILLEGAL();
 
@@ -3437,14 +3437,16 @@ public interface AppErrors extends ConstantsWithLookup {
     @DefaultStringValue("Cannot ${action} ${type}. Disk Profile ${diskProfile} with id ${diskProfileId} is not assigned to Storage Domain ${storageDomain}.")
     String ACTION_TYPE_DISK_PROFILE_NOT_MATCH_STORAGE_DOMAIN();
 
+    String ACTION_TYPE_DISK_PROFILE_NOT_FOUND_FOR_STORAGE_DOMAIN();
+
     @DefaultStringValue("Cannot ${action} ${type}. CPU Profile doesn't match provided Cluster.")
     String ACTION_TYPE_CPU_PROFILE_NOT_MATCH_CLUSTER();
 
     @DefaultStringValue("Cannot ${action} ${type}. Cannot remove last CPU profile in Cluster.")
     String ACTION_TYPE_CANNOT_REMOVE_LAST_CPU_PROFILE_IN_CLUSTER();
 
-    @DefaultStringValue("Can't assign CPU profile. CPU profile with id ${cpuProfileId} doesn't exist.")
-    String ACTION_TYPE_NO_CPU_PROFILE_WITH_THAT_ID();
+    @DefaultStringValue("Cannot ${action} ${type}. CPU profile with id ${cpuProfileId} doesn't exist.")
+    String ACTION_TYPE_FAILED_CPU_PROFILE_NOT_FOUND();
 
     @DefaultStringValue("No CPU profile exist.")
     String ACTION_TYPE_CPU_PROFILE_EMPTY();

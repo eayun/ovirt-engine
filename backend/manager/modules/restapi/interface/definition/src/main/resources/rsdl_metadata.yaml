@@ -1405,6 +1405,7 @@ actions:
           cluster.error_handling.on_error: xs:string
           cluster.virt_service: xs:boolean
           cluster.gluster_service: xs:boolean
+          cluster.scheduling_policy.id|name: xs:string
           cluster.threads_as_cores: xs:boolean
           cluster.tunnel_migration: xs:boolean
           cluster.ballooning_enabled: xs:boolean
@@ -3598,6 +3599,12 @@ actions:
 - name: /storageconnections/{storageconnection:id}|rel=update
   description: update the specified storage connection in the system
   request:
+    urlparams:
+      force:
+        context: matrix
+        type: xs:boolean
+        value: true|false
+        required: false
     body:
       parameterType: StorageConnection
       signatures:
