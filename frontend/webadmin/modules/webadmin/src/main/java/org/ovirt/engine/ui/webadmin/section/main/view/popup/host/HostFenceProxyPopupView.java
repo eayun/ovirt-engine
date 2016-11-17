@@ -5,6 +5,7 @@ import org.ovirt.engine.ui.common.widget.dialog.SimpleDialogPanel;
 import org.ovirt.engine.ui.common.widget.editor.ListModelListBoxEditor;
 import org.ovirt.engine.ui.common.widget.renderer.StringRenderer;
 import org.ovirt.engine.ui.uicommonweb.models.hosts.FenceProxyModel;
+import org.ovirt.engine.ui.uicommonweb.models.hosts.FenceProxyUtils;
 import org.ovirt.engine.ui.webadmin.ApplicationConstants;
 import org.ovirt.engine.ui.webadmin.gin.AssetProvider;
 import org.ovirt.engine.ui.webadmin.section.main.presenter.popup.host.HostFenceProxyPopupPresenterWidget;
@@ -68,6 +69,7 @@ public class HostFenceProxyPopupView extends AbstractModelBoundPopupView<FencePr
         if (!object.getAvailableProxies().getItems().isEmpty()) {
             pmProxyType.setVisible(true);
             noItemsAvailableLabel.setVisible(false);
+            FenceProxyUtils.localeFenceProxy(object.getAvailableProxies());
             driver.edit(object);
             doFlush = true;
         } else {

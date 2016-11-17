@@ -8,6 +8,7 @@ import org.ovirt.engine.ui.common.css.OvirtCss;
 import org.ovirt.engine.ui.common.widget.AddRemoveRowWidget;
 import org.ovirt.engine.ui.uicommonweb.models.ListModel;
 import org.ovirt.engine.ui.uicommonweb.models.hosts.FenceProxyModel;
+import org.ovirt.engine.ui.uicommonweb.models.hosts.FenceProxyUtils;
 import org.ovirt.engine.ui.webadmin.ApplicationConstants;
 import org.ovirt.engine.ui.webadmin.gin.AssetProvider;
 import org.ovirt.engine.ui.webadmin.uicommon.model.FenceProxyModelProvider;
@@ -105,6 +106,7 @@ public class HostProxySourceEditor extends AddRemoveRowWidget<ListModel<FencePro
 
     @Override
     protected void init(ListModel<FenceProxyModel> listModel) {
+        FenceProxyUtils.localeFenceProxy(listModel);
         this.listModel = listModel;
         super.init(listModel);
         header.setText(constants.hostPopupSourceText());

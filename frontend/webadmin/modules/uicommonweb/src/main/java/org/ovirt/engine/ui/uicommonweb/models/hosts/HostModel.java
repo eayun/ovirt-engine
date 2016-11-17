@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import org.ovirt.engine.core.common.action.VdsOperationActionParameters.AuthenticationMethod;
 import org.ovirt.engine.core.common.businessentities.ArchitectureType;
 import org.ovirt.engine.core.common.businessentities.ExternalEntityBase;
@@ -344,6 +343,7 @@ public abstract class HostModel extends Model implements HasValidatedTabs {
         if (getPmProxyPreferencesList().getItems() != null) {
             Collection<FenceProxyModel> items = getPmProxyPreferencesList().getItems();
             for (FenceProxyModel item : items) {
+                FenceProxyUtils.setRealFenceProxy(item);
                 if (builder.length() > 0) {
                     builder.append(",");    //$NON-NLS-1$
                 }

@@ -145,4 +145,14 @@ public interface CommonApplicationConstantsWithLookup extends com.google.gwt.i18
 
     @DefaultStringValue("")
     String OK();
+
+    /** FenceProxySourceType **/
+    @DefaultStringValue("cluster")
+    String cluster();
+
+    @DefaultStringValue("dc")
+    String dc();
+
+    @DefaultStringValue("other_dc")
+    String other_dc();
 }

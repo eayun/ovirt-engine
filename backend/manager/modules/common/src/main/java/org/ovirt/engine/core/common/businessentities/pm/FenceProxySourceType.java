@@ -34,6 +34,10 @@ public enum FenceProxySourceType {
         return this.value;
     }
 
+    public void setValue(String value) {
+        this.value = value;
+    }
+
     /**
      * Tries to parse fence proxy source type from string
      *
