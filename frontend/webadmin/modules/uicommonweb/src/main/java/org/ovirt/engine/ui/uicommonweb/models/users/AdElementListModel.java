@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.MissingResourceException;
 import java.util.Set;
 
 import org.ovirt.engine.core.aaa.DirectoryGroup;
@@ -28,6 +29,8 @@ import org.ovirt.engine.ui.uicommonweb.dataprovider.AsyncDataProvider;
 import org.ovirt.engine.ui.uicommonweb.models.EntityModel;
 import org.ovirt.engine.ui.uicommonweb.models.ListModel;
 import org.ovirt.engine.ui.uicommonweb.models.SearchableListModel;
+import org.ovirt.engine.ui.uicompat.CommonApplicationConstantsWithLookup;
+import org.ovirt.engine.ui.uicompat.CommonApplicationConstantsWithLookupManager;
 import org.ovirt.engine.ui.uicompat.Event;
 import org.ovirt.engine.ui.uicompat.EventArgs;
 import org.ovirt.engine.ui.uicompat.PropertyChangedEventArgs;
@@ -147,6 +150,9 @@ public class AdElementListModel extends SearchableListModel<Object, EntityModel<
             onPropertyChanged(new PropertyChangedEventArgs("IsEveryoneSelected")); //$NON-NLS-1$
         }
     }
+
+    private CommonApplicationConstantsWithLookup constantsWithLookup =
+            CommonApplicationConstantsWithLookupManager.getInstance().getCommonApplicationConstantsWithLookup();
 
     public AdElementListModel() {
         setRole(new ListModel<Role>());
@@ -432,8 +438,15 @@ public class AdElementListModel extends SearchableListModel<Object, EntityModel<
     private boolean handleQueryError(VdcQueryReturnValue returnValue, AdElementListModel model) {
         model.setMessage(null);
         if (!returnValue.getSucceeded()) {
-            model.setMessage(Frontend.getInstance().getAppErrorsTranslator()
-                    .translateErrorTextSingle(returnValue.getExceptionString()));
+            try {
+                model.setMessage(constantsWithLookup.getString(Frontend.getInstance()
+                        .getAppErrorsTranslator()
+                        .translateErrorTextSingle(returnValue.getExceptionString())));
+            } catch (MissingResourceException e) {
+                getLogger().warn("Can't find " + constantsWithLookup.getClass().getName() + "." + returnValue.getExceptionString());//$NON-NLS-1$//$NON-NLS-2$
+                model.setMessage(Frontend.getInstance().getAppErrorsTranslator()
+                        .translateErrorTextSingle(returnValue.getExceptionString()));
+            }
             getSearchInProgress().setEntity(false);
 
             return true;

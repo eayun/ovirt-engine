@@ -11,7 +11,7 @@ public class AuthenticationResultException extends DirectoryServiceException {
     private AuthenticationResult result;
 
     public AuthenticationResultException(AuthenticationResult result) {
-        super(result.getDetailedMessage());
+        super(result.name());
         this.result = result;
     }
 
@@ -25,7 +25,7 @@ public class AuthenticationResultException extends DirectoryServiceException {
     }
 
     public AuthenticationResultException(AuthenticationResult result, Throwable cause) {
-        super(result.getDetailedMessage(), cause);
+        super(result.name(), cause);
         this.result = result;
     }
 
