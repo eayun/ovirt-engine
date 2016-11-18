@@ -3057,4 +3057,6 @@ public interface UIConstants extends com.google.gwt.i18n.client.Constants {
     @DefaultStringValue("Next boot entry")
     String nextBootEntry();
 
+    @DefaultStringValue("Connect with the network provider failed, please check the details of the log.")
+    String importNetworkErrorMessage();
 }

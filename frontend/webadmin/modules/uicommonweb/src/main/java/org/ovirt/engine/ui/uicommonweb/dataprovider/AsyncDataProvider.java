@@ -3850,6 +3850,7 @@ public class AsyncDataProvider {
     }
 
     public void getExternalNetworkMap(AsyncQuery aQuery, Guid providerId) {
+        aQuery.setHandleFailure(true);
         aQuery.converterCallback = new IAsyncConverter() {
             @Override
             public Object Convert(Object source, AsyncQuery _asyncQuery) {

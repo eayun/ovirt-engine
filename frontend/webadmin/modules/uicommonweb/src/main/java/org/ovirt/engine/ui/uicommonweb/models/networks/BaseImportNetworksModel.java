@@ -23,12 +23,15 @@ import org.ovirt.engine.core.common.businessentities.network.Network;
 import org.ovirt.engine.core.common.businessentities.network.NetworkCluster;
 import org.ovirt.engine.core.common.businessentities.network.VnicProfile;
 import org.ovirt.engine.core.common.queries.ConfigurationValues;
+import org.ovirt.engine.core.common.queries.VdcQueryReturnValue;
 import org.ovirt.engine.core.compat.Guid;
 import org.ovirt.engine.ui.frontend.AsyncQuery;
 import org.ovirt.engine.ui.frontend.Frontend;
 import org.ovirt.engine.ui.frontend.INewAsyncCallback;
+import org.ovirt.engine.ui.uicommonweb.ErrorPopupManager;
 import org.ovirt.engine.ui.uicommonweb.Linq;
 import org.ovirt.engine.ui.uicommonweb.Linq.IPredicate;
+import org.ovirt.engine.ui.uicommonweb.TypeResolver;
 import org.ovirt.engine.ui.uicommonweb.UICommand;
 import org.ovirt.engine.ui.uicommonweb.dataprovider.AsyncDataProvider;
 import org.ovirt.engine.ui.uicommonweb.help.HelpTag;
@@ -90,6 +93,8 @@ public class BaseImportNetworksModel extends Model {
         return cancelImportCommand;
     }
 
+    private ErrorPopupManager errorPopupManager;
+
     public BaseImportNetworksModel(SearchableListModel sourceListModel,
             final com.google.inject.Provider<CommonModel> commonModelProvider) {
         this.commonModelProvider = commonModelProvider;
@@ -121,6 +126,11 @@ public class BaseImportNetworksModel extends Model {
         });
 
         initProviderList();
+        initErrorPopup();
+    }
+
+    public void initErrorPopup() {
+        errorPopupManager = (ErrorPopupManager) TypeResolver.getInstance().resolve(ErrorPopupManager.class);
     }
 
     protected void initProviderList() {
@@ -150,35 +160,41 @@ public class BaseImportNetworksModel extends Model {
 
             @Override
             public void onSuccess(Object model, Object returnValue) {
-                Map<Network, Set<Guid>> externalNetworkToDataCenters = (Map<Network, Set<Guid>>) returnValue;
-                List<ExternalNetwork> items = new LinkedList<ExternalNetwork>();
-                for (Map.Entry<Network, Set<Guid>> entry : externalNetworkToDataCenters.entrySet()) {
-                    Network network = entry.getKey();
-                    Set<Guid> attachedDataCenters = entry.getValue();
-
-                    ExternalNetwork externalNetwork = new ExternalNetwork();
-                    externalNetwork.setNetwork(network);
-                    externalNetwork.setDisplayName(network.getName());
-                    externalNetwork.setPublicUse(true);
-
-                    List<StoragePool> availableDataCenters = new LinkedList<StoragePool>();
-                    for (StoragePool dc : dataCenters) {
-                        if (!attachedDataCenters.contains(dc.getId())) {
-                            availableDataCenters.add(dc);
-                        }
+                if (returnValue instanceof VdcQueryReturnValue) {
+                    if (!((VdcQueryReturnValue) returnValue).getSucceeded()) {
+                        errorPopupManager.show(ConstantsManager.getInstance().getConstants().importNetworkErrorMessage());
+                        stopProgress();
+                        initProviderList();
                     }
-                    externalNetwork.getDataCenters().setItems(availableDataCenters);
-                    externalNetwork.getDataCenters().setSelectedItem(treeSelectedDc != null
-                            && availableDataCenters.contains(treeSelectedDc) ? treeSelectedDc
-                            : Linq.firstOrNull(availableDataCenters));
+                } else {
+                    Map<Network, Set<Guid>> externalNetworkToDataCenters = (Map<Network, Set<Guid>>) returnValue;
+                    List<ExternalNetwork> items = new LinkedList<ExternalNetwork>();
+                    for (Map.Entry<Network, Set<Guid>> entry : externalNetworkToDataCenters.entrySet()) {
+                        Network network = entry.getKey();
+                        Set<Guid> attachedDataCenters = entry.getValue();
+                        ExternalNetwork externalNetwork = new ExternalNetwork();
+                        externalNetwork.setNetwork(network);
+                        externalNetwork.setDisplayName(network.getName());
+                        externalNetwork.setPublicUse(true);
 
-                    items.add(externalNetwork);
+                        List<StoragePool> availableDataCenters = new LinkedList<StoragePool>();
+                        for (StoragePool dc : dataCenters) {
+                            if (!attachedDataCenters.contains(dc.getId())) {
+                                availableDataCenters.add(dc);
+                            }
+                        }
+                        externalNetwork.getDataCenters().setItems(availableDataCenters);
+                        externalNetwork.getDataCenters().setSelectedItem(treeSelectedDc != null
+                                && availableDataCenters.contains(treeSelectedDc) ? treeSelectedDc
+                                        : Linq.firstOrNull(availableDataCenters));
+
+                        items.add(externalNetwork);
+                    }
+                    Collections.sort(items, new Linq.ExternalNetworkComparator());
+                    providerNetworks.setItems(items);
+                    importedNetworks.setItems(new LinkedList<ExternalNetwork>());
+                    stopProgress();
                 }
-                Collections.sort(items, new Linq.ExternalNetworkComparator());
-                providerNetworks.setItems(items);
-                importedNetworks.setItems(new LinkedList<ExternalNetwork>());
-
-                stopProgress();
             }
         };
 
