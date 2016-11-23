@@ -2002,8 +2002,8 @@ public class UnitVmModel extends Model implements HasValidatedTabs {
         if (Version.v3_1.compareTo(cluster.getCompatibilityVersion()) > 0) {
             if (AsyncDataProvider.getInstance().isWindowsOsType(osType)) {
                 getUsbPolicy().setItems(Arrays.asList(
-                        UsbPolicy.DISABLED,
-                        UsbPolicy.ENABLED_LEGACY
+                        UsbPolicy.DISABLED
+                        //UsbPolicy.ENABLED_LEGACY
                 ));
             } else {
                 getUsbPolicy().setItems(Arrays.asList(UsbPolicy.DISABLED));
@@ -2014,14 +2014,14 @@ public class UnitVmModel extends Model implements HasValidatedTabs {
         if (Version.v3_1.compareTo(cluster.getCompatibilityVersion()) <= 0) {
             if (AsyncDataProvider.getInstance().isLinuxOsType(osType)) {
                 getUsbPolicy().setItems(Arrays.asList(
-                        UsbPolicy.DISABLED,
-                        UsbPolicy.ENABLED_NATIVE
+                        UsbPolicy.DISABLED
+                        //UsbPolicy.ENABLED_NATIVE
                 ));
             } else {
                 getUsbPolicy().setItems(
                         Arrays.asList(
                                 UsbPolicy.DISABLED,
-                                UsbPolicy.ENABLED_LEGACY,
+                                //UsbPolicy.ENABLED_LEGACY,
                                 UsbPolicy.ENABLED_NATIVE
                         ));
             }
