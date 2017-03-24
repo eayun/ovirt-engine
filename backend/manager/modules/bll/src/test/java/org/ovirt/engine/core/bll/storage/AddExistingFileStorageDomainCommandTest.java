@@ -81,6 +81,7 @@ public class AddExistingFileStorageDomainCommandTest {
 
         when(command.getVdsDao().getAllForStoragePoolAndStatus(any(Guid.class), eq(VDSStatus.Up))).thenReturn(getHosts());
         when(command.getStoragePoolDao().get(any(Guid.class))).thenReturn(getStoragePool());
+        doReturn(false).when(command).licenseValidateFalied();
     }
 
     @Test

@@ -50,7 +50,6 @@ import org.ovirt.engine.core.common.errors.EngineException;
 import org.ovirt.engine.core.common.errors.EngineMessage;
 import org.ovirt.engine.core.common.job.Step;
 import org.ovirt.engine.core.common.job.StepEnum;
-import org.ovirt.engine.core.common.utils.VerifyLicenseStatus;
 import org.ovirt.engine.core.common.validation.group.CreateEntity;
 import org.ovirt.engine.core.common.validation.group.PowerManagementCheck;
 import org.ovirt.engine.core.compat.Guid;
@@ -322,9 +321,7 @@ public class AddVdsCommand<T extends AddVdsActionParameters> extends VdsCommand<
     @Override
     protected boolean canDoAction() {
 
-        boolean isActive=VerifyLicenseStatus.getVerifyActiveState(getDbFacade());
-        boolean isTimeout=VerifyLicenseStatus.getVerifyExpiredState();
-        if(!isActive&&isTimeout){
+        if(licenseValidateFalied()){
             return failCanDoAction(EngineMessage.ACTION_FAILED_TIMEOUT);
         }
 

@@ -15,17 +15,25 @@ import org.ovirt.engine.core.dal.dbbroker.DbFacade;
 import org.slf4j.LoggerFactory;
 
 public class VerifyLicenseStatus {
+    private static VerifyLicenseStatus instance;
+
+    public static VerifyLicenseStatus getInstance() {
+        if (instance == null) {
+            instance = new VerifyLicenseStatus();
+        }
+        return instance;
+    }
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(VerifyLicenseStatus.class);
     //验证激活状态
-    public static boolean getVerifyActiveState(DbFacade dbf){
-        VdcOption vdcOption=dbf.getVdcOptionDao().getByNameAndVersion("ActivCode", "general");
+    public boolean getVerifyActiveState(){
+        VdcOption vdcOption=DbFacade.getInstance().getVdcOptionDao().getByNameAndVersion("ActivCode", "general");
         boolean isAcive=false;
         if(vdcOption!=null&&vdcOption.getoption_value()!=null &&!"".equals(vdcOption.getoption_value())){
             String activCode= vdcOption.getoption_value();
             activCode=SecretKey.decode(activCode);
             activCode=SecretKey.to16String(activCode);
             activCode=activCode.replace("-", "");
-            String UUID = VerifyLicenseStatus.getUuid();
+            String UUID = VerifyLicenseStatus.getInstance().getUuid();
             UUID = UUID.replace("-", "");
 
             isAcive = UUID.equals(activCode);
@@ -35,7 +43,7 @@ public class VerifyLicenseStatus {
 
     }
     //验证过期状态
-    public static boolean getVerifyExpiredState(){
+    public boolean getVerifyExpiredState(){
         String installationTime = Config.<String> getValue(ConfigValues.InstallationTime);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date=null;
@@ -52,7 +60,7 @@ public class VerifyLicenseStatus {
         return isTimeout;
     }
     //获得UUID
-    public static String getUuid(){
+    public String getUuid(){
         String UUID = null;
         File file = new File("/sys/class/dmi/id/product_uuid");
         try {

@@ -55,7 +55,7 @@ public enum VdcActionType {
     ActivCode(43, ActionGroup.ACTIV_CODE, false, QuotaDependency.NONE),
     AddVmFromSnapshot(52, ActionGroup.CREATE_VM, QuotaDependency.BOTH),
     CloneVm(53, ActionGroup.CREATE_VM, QuotaDependency.BOTH),
-    ImportVmFromConfiguration(43, ActionGroup.IMPORT_EXPORT_VM, QuotaDependency.STORAGE),
+    ImportVmFromConfiguration(6001, ActionGroup.IMPORT_EXPORT_VM, QuotaDependency.STORAGE),
     UpdateVmVersion(44, QuotaDependency.NONE),
     ImportVmTemplateFromConfiguration(45, ActionGroup.IMPORT_EXPORT_VM, QuotaDependency.STORAGE),
     ProcessDownVm(46, QuotaDependency.NONE),

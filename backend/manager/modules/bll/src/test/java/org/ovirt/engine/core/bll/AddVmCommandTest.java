@@ -155,6 +155,9 @@ public class AddVmCommandTest {
         SimpleDependecyInjector.getInstance().bind(DbFacade.class, dbFacade);
         doReturn(deviceDao).when(dbFacade).getVmDeviceDao();
         VmDeviceUtils.init();
+        VM vm = createVm();
+        AddVmFromTemplateCommand<AddVmParameters> cmd = createVmFromTemplateCommand(vm);
+        doReturn(false).when(cmd).licenseValidateFalied();
     }
 
     @Test
@@ -418,6 +421,7 @@ public class AddVmCommandTest {
         doReturn(true).when(result).checkNumberOfMonitors();
         doReturn(createVmTemplate()).when(result).getVmTemplate();
         doReturn(true).when(result).validateCustomProperties(any(VmStatic.class), any(ArrayList.class));
+        doReturn(false).when(result).licenseValidateFalied();
         mockDaos(result);
         mockBackend(result);
         initCommandMethods(result);
@@ -452,6 +456,7 @@ public class AddVmCommandTest {
         doReturn(vm).when(cmd).getVm();
         mockDaos(cmd);
         doReturn(snapshotDao).when(cmd).getSnapshotDao();
+        doReturn(false).when(cmd).licenseValidateFalied();
         mockBackend(cmd);
         return cmd;
     }
@@ -482,6 +487,7 @@ public class AddVmCommandTest {
         initializeVmStaticDaoMock(vm);
         doReturn(createVmTemplate()).when(cmd).getVmTemplate();
         doReturn(createStoragePool()).when(cmd).getStoragePool();
+        doReturn(false).when(cmd).licenseValidateFalied();
         return cmd;
     }
 
@@ -796,6 +802,7 @@ public class AddVmCommandTest {
 
         doReturn(true).when(cmd).validateSpaceRequirements();
         doReturn(true).when(cmd).buildAndCheckDestStorageDomains();
+        doReturn(false).when(cmd).licenseValidateFalied();
         cmd.getParameters().getVm().setClusterArch(ArchitectureType.ppc64);
         VDSGroup vdsGroup = new VDSGroup();
         vdsGroup.setArchitecture(ArchitectureType.ppc64);

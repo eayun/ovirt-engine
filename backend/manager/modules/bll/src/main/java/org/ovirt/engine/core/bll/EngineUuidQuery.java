@@ -17,17 +17,17 @@ public class EngineUuidQuery<P extends VdcQueryParametersBase> extends QueriesCo
     protected void executeQueryCommand() {
         String code = null;
         HashMap<String, String> map= new HashMap<String, String>();
-                code = VerifyLicenseStatus.getUuid();
+                code = VerifyLicenseStatus.getInstance().getUuid();
                 code = SecretKey.part(code);
                 code = SecretKey.to32String(code);
 
-                if(VerifyLicenseStatus.getVerifyActiveState(getDbFacade())){
+                if(VerifyLicenseStatus.getInstance().getVerifyActiveState()){
                     map.put("isActive", "true");
                 }else{
                     map.put("isActive", "false");
                 }
 
-                if(VerifyLicenseStatus.getVerifyExpiredState()){
+                if(VerifyLicenseStatus.getInstance().getVerifyExpiredState()){
                     map.put("timeOut", "true");
                 }else{
                     map.put("timeOut", "false");

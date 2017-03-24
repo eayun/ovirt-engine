@@ -110,6 +110,7 @@ public class AddDiskCommandTest {
      */
     private AddDiskCommand<AddDiskParameters> command;
 
+
     @Test
     public void canDoActionSucceedsOnDiskDomainCheckWhenNoDisks() throws Exception {
         Guid storageId = Guid.newGuid();
@@ -369,6 +370,7 @@ public class AddDiskCommandTest {
         doReturn(false).when(command).isBalloonEnabled(any(Guid.class));
         doReturn(false).when(command).isSoundDeviceEnabled(any(Guid.class));
         doReturn(true).when(command).setAndValidateDiskProfiles();
+        doReturn(false).when(command).licenseValidateFalied();
         SimpleDependecyInjector.getInstance().bind(OsRepository.class, osRepository);
     }
 

@@ -34,7 +34,7 @@ public class ActivCodeCommand<T extends ActivCodeParameters> extends VmCommand<T
             activCode=SecretKey.decode(activCode);
             activCode=SecretKey.to16String(activCode);
             activCode=activCode.replace("-", "");
-            String UUID = VerifyLicenseStatus.getUuid();
+            String UUID = VerifyLicenseStatus.getInstance().getUuid();
             UUID = UUID.replace("-", "");
             log.info(UUID);
             log.info(activCode);

@@ -76,6 +76,7 @@ import org.ovirt.engine.core.common.queries.VdcQueryReturnValue;
 import org.ovirt.engine.core.common.queries.VdcQueryType;
 import org.ovirt.engine.core.common.utils.Pair;
 import org.ovirt.engine.core.common.utils.ValidationUtils;
+import org.ovirt.engine.core.common.utils.VerifyLicenseStatus;
 import org.ovirt.engine.core.common.vdscommands.VDSCommandType;
 import org.ovirt.engine.core.common.vdscommands.VDSParametersBase;
 import org.ovirt.engine.core.common.vdscommands.VDSReturnValue;
@@ -105,6 +106,7 @@ import org.ovirt.engine.core.utils.transaction.TransactionSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import com.woorea.openstack.base.client.OpenStackResponseException;
 
 public abstract class CommandBase<T extends VdcActionParametersBase>
@@ -588,7 +590,8 @@ public abstract class CommandBase<T extends VdcActionParametersBase>
         ExecutionHandler.startFinalizingStep(getExecutionContext());
     }
 
-    public VdcReturnValueBase endAction() {
+   @Override
+     public VdcReturnValueBase endAction() {
         if (!hasTaskHandlers() || getExecutionIndex() == getTaskHandlers().size() - 1) {
             startFinalizingStep();
         }
@@ -1559,7 +1562,8 @@ public abstract class CommandBase<T extends VdcActionParametersBase>
         return annotation == null;
     }
 
-    public T getParameters() {
+   @Override
+     public T getParameters() {
         return _parameters;
     }
 
@@ -2526,5 +2530,12 @@ public abstract class CommandBase<T extends VdcActionParametersBase>
             cancelTasks();
         }
 
+    }
+
+    public boolean licenseValidateFalied() {
+        VerifyLicenseStatus verifyLicenseStatus=VerifyLicenseStatus.getInstance();
+        boolean isActive = verifyLicenseStatus.getVerifyActiveState();
+        boolean isTimeout = verifyLicenseStatus.getVerifyExpiredState();
+        return !isActive&&isTimeout;
     }
 }
