@@ -27,6 +27,7 @@ import org.ovirt.engine.core.common.businessentities.VDSStatus;
 import org.ovirt.engine.core.common.businessentities.storage.StorageType;
 import org.ovirt.engine.core.common.config.ConfigValues;
 import org.ovirt.engine.core.common.errors.EngineMessage;
+import org.ovirt.engine.core.common.utils.VerifyLicenseStatus;
 import org.ovirt.engine.core.compat.Guid;
 import org.ovirt.engine.core.compat.Version;
 import org.ovirt.engine.core.dao.StorageDomainDao;
@@ -57,6 +58,9 @@ public class AddStorageDomainCommonTest {
     private StoragePoolDao spDao;
     @Mock
     private StorageServerConnectionDao sscDao;
+
+    @Mock
+    private VerifyLicenseStatus verifyLicenseStatus;
 
     private StorageDomainStatic sd;
     private VDS vds;

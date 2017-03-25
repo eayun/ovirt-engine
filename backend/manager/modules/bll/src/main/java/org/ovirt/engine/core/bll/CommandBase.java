@@ -106,6 +106,7 @@ import org.ovirt.engine.core.utils.transaction.TransactionSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
 import com.woorea.openstack.base.client.OpenStackResponseException;
 
 public abstract class CommandBase<T extends VdcActionParametersBase>
@@ -589,7 +590,8 @@ public abstract class CommandBase<T extends VdcActionParametersBase>
         ExecutionHandler.startFinalizingStep(getExecutionContext());
     }
 
-    public VdcReturnValueBase endAction() {
+   @Override
+     public VdcReturnValueBase endAction() {
         if (!hasTaskHandlers() || getExecutionIndex() == getTaskHandlers().size() - 1) {
             startFinalizingStep();
         }
@@ -1560,7 +1562,8 @@ public abstract class CommandBase<T extends VdcActionParametersBase>
         return annotation == null;
     }
 
-    public T getParameters() {
+   @Override
+     public T getParameters() {
         return _parameters;
     }
 

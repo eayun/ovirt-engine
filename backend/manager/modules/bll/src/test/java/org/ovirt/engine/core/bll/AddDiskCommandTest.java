@@ -110,6 +110,7 @@ public class AddDiskCommandTest {
      */
     private AddDiskCommand<AddDiskParameters> command;
 
+
     @Test
     public void canDoActionSucceedsOnDiskDomainCheckWhenNoDisks() throws Exception {
         Guid storageId = Guid.newGuid();

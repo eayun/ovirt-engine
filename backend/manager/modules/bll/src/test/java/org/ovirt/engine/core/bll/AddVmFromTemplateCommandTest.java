@@ -36,6 +36,8 @@ public class AddVmFromTemplateCommandTest extends AddVmCommandTest {
      */
     protected AddVmFromTemplateCommand<AddVmParameters> command;
 
+
+    @Override
     @Test
     public void validateSpaceAndThreshold() {
         mockOsRepository();
@@ -49,6 +51,7 @@ public class AddVmFromTemplateCommandTest extends AddVmCommandTest {
         verify(storageDomainValidator, never()).hasSpaceForNewDisks(anyList());
     }
 
+    @Override
     @Test
     public void validateSpaceNotEnough() throws Exception {
         mockOsRepository();
@@ -64,6 +67,7 @@ public class AddVmFromTemplateCommandTest extends AddVmCommandTest {
         verify(storageDomainValidator, never()).hasSpaceForNewDisks(anyList());
     }
 
+    @Override
     @Test
     public void validateSpaceNotWithinThreshold() throws Exception {
         mockOsRepository();
