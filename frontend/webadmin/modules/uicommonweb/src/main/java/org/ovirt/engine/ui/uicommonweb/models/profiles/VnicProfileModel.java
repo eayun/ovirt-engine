@@ -2,7 +2,6 @@ package org.ovirt.engine.ui.uicommonweb.models.profiles;
 
 import java.util.List;
 import java.util.Map;
-
 import org.ovirt.engine.core.common.action.VdcActionParametersBase;
 import org.ovirt.engine.core.common.action.VdcActionType;
 import org.ovirt.engine.core.common.action.VdcReturnValueBase;
@@ -279,6 +278,14 @@ public abstract class VnicProfileModel extends Model {
                                 if (returnValue != null) {
                                     Map<String, String> customPropertiesList =
                                             ((VdcQueryReturnValue) returnValue).getReturnValue();
+
+                                    if (customPropertiesList != null) {
+                                        for (String key : customPropertiesList.keySet()) {
+                                            if ("SecurityGroups".equals(key)) {//$NON-NLS-1$
+                                                customPropertiesList.remove(key);
+                                            }
+                                        }
+                                    }
 
                                     getCustomPropertySheet().setKeyValueMap(customPropertiesList);
                                     getCustomPropertySheet().setIsChangeable(!customPropertiesList.isEmpty());
