@@ -1029,7 +1029,7 @@ public interface UIConstants extends com.google.gwt.i18n.client.Constants {
     @DefaultStringValue("Snapshot cannot be created since the VM contains a stateless Snapshot.")
     String snapshotCannotBeCreatedStatelessSnapshotMsg();
 
-    @DefaultStringValue("Note that without a Guest Agent the data on the created snapshot may be inconsistent.")
+    @DefaultStringValue("Please make sure the Guest agent is installed on the virtual machine, without a Guest Agent the data on the created snapshot may be inconsistent.")
     String liveSnapshotWithNoGuestAgentMsg();
 
     @DefaultStringValue("At least one disk must be marked.")

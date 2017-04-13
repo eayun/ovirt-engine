@@ -232,7 +232,7 @@ public class SnapshotModel extends EntityModel<Snapshot> {
     }
 
     private void initMessages() {
-        if (vm.isRunning() && !vm.getHasAgent()) {
+        if (vm.isRunning()) {
             setMessage(ConstantsManager.getInstance().getConstants().liveSnapshotWithNoGuestAgentMsg());
         }
 
