@@ -4,6 +4,7 @@ import org.ovirt.engine.ui.common.auth.CurrentUser;
 import org.ovirt.engine.ui.common.uicommon.model.OptionsProvider;
 import org.ovirt.engine.ui.common.utils.WebUtils;
 import org.ovirt.engine.ui.uicommonweb.models.OptionsModel;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
@@ -54,7 +55,7 @@ public abstract class AbstractHeaderPresenterWidget<V extends AbstractHeaderPres
         registerHandler(getView().getGuideLink().addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                WebUtils.openUrlInNewWindow(windowName, guideUrl);
+                WebUtils.openUrlInNewWindow(windowName, "/docs/administration-guide/index.html");//$NON-NLS-1$
             }
         }));
 
