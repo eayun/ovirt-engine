@@ -1015,7 +1015,7 @@ public interface CommonApplicationConstants extends Constants {
     @DefaultStringValue("Please send the above registration code together with the enterprise information via email to license@eayun.com. we will give you feedback on the official License.")
     String toComMail();
 
-    @DefaultStringValue("If you have any questions, please contact our technical support staff: <br/> contact: XXXXXX<br/> contact email: Service@eayun.com<br/>")
+    @DefaultStringValue("If you have any questions, please contact our technical support staff: <br/> contact: 400-6066-396<br/> contact email: Service@eayun.com<br/>")
     String toArtisan();
 
 
