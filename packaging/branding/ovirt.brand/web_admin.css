@@ -31,3 +31,70 @@ This class's sub-class SubTabTemplateDiskView. */
 .template-disk-tree-container {
 	top: 75px !important;
 }
+
+/* About popup style */
+.abt-content{
+    font-size: 15px;
+}
+.abt-content .abt-main-left {
+    padding-left: 50px;
+    padding-right: 100px;
+}
+.abt-content .abt-main-right{
+    padding-top: 80px;
+    padding-left: 30px;
+}
+.abt-content .abt-main-reg{
+    margin-top: 30px;
+}
+.abt-content .abt-code-input{
+    width: 100%;
+    height: 40px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding: 3px 10px;
+}
+.abt-content .abt-code-lb{
+    background-color: #8c8c8c;
+    padding: 8px 12px;
+    font-size: 17px;
+}
+.abt-content .btn-reg{
+    background-color: #0c9073;
+    color: #FFFFFF;
+    width: 110px;
+    height: 40px;
+    font-size: 18px;
+}
+.abt-content .abt-ser-font{
+    display: block;
+    font-size: small;
+    color: #8c8c8c;
+}
+.abt-content .abt-ser-pos{
+    margin-top: 40px;
+}
+.abt-content .abt-reg-suc{
+    display: block;
+    text-align: center;
+    margin-top: 100px;
+}
+.abt-content .abt-done-suc, .abt-content .abt-basic-info{
+    display: block;
+    margin: 100px;
+}
+.abt-content .abt-non-admin{
+    display: block;
+    margin: 100px;
+    font-size: 16px;
+}
+.abt-content .abt-ser-right{
+    display: block;
+    margin-top: 145px;
+    margin-right: 100px;
+}
+.abt-content .abt-ser-done{
+    display: block;
+    margin-top: 100px;
+    margin-right: 100px;
+}
