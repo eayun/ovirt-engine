@@ -6,73 +6,54 @@
 	xmlns:w="urn:import:org.ovirt.engine.ui.common.widget">
 
 	<ui:style>
-		.content {
-		}
 
-		.copyrightNotice {
-			font-weight: bold;
-		}
-		.buttonStyle {
-			width:40px;
-            line-height: normal;
-        }
-        .publicKeyEditor {
-			height:30px;
-            width: 300px;
-            padding-left: 5px;
-            line-height: normal;
-            font-family: "Courier New", Courier, monospace;
-        }
 	</ui:style>
 	
 	<ui:with field='constants' type='org.ovirt.engine.ui.common.CommonApplicationConstants'/>
 
-	<d:SimpleDialogPanel width="600px" height="400px">
-		<d:header>
+	<d:SimpleDialogPanel width="1100px" height="676px">
+		<d:header >
 			<g:Label ui:field="titleLabel" />
 		</d:header>
 
 		<d:content>
-			<g:VerticalPanel verticalAlignment="ALIGN_MIDDLE" addStyleNames="{style.content}">
-				<g:HorizontalPanel horizontalAlignment="ALIGN_CENTER" width="100%">
-			          <g:HTMLPanel>
-						<div>
-							<g:InlineLabel ui:field="versionLabel" />
-						</div>
-						<div>
-							<g:Label ui:field="copyrightNotice" addStyleNames="{style.copyrightNotice}"/>
-						</div>
-							<g:HTMLPanel ui:field="cnterprise">
-							<div style="align:left">
-								<g:Label ui:field="licenseNotice" />
-							</div>
-							<p/>
-								<g:HTMLPanel ui:field="superUser">
+			<g:HTMLPanel addStyleNames="abt-content">
+				<div class="col-md-12" >
+					<h2 style="text-align: center">
+						<g:InlineLabel ui:field="versionLabel" />
+					</h2>
+				</div>
+				<g:HTMLPanel ui:field="elseContent" addStyleNames="col-md-12" />
+				<g:HTMLPanel  ui:field="mainContent">
+					<g:HTMLPanel addStyleNames="col-md-12" >
+						<g:HTMLPanel addStyleNames="col-md-7 abt-main-left">
+							<g:HTMLPanel>
+								<h2 style="padding-top:10px; padding-bottom: 20px">欢迎使用！</h2>
+								<p>EayunOS服务器虚拟化软件提供免费使用期30天</p>
+								<p>到期后将影响您的正常使用，请您尽快完成注册激活！</p>
+								<g:HTMLPanel ui:field="probtStatus"></g:HTMLPanel>
+							</g:HTMLPanel>
+							<g:HTMLPanel addStyleNames="abt-main-reg">
+								<h2>请输入激活码</h2>
 								<div>
-								    <g:Label  />
-									<g:InlineLabel ui:field="pollText" />
-									<g:InlineLabel ui:field="pollCode" />
-								</div>
-								<p/>
-								<div>
-									<g:InlineLabel ui:field="activText" />
-									<br/>
-									<ge:StringEntityModelTextArea ui:field="activeCode"  addStyleNames="{style.publicKeyEditor}" />
-									
-									<w:UiCommandButton ui:field="activatButton" label="{constants.activation}" addStyleNames="{style.buttonStyle}" />
-									<br/>
-									<g:Label ui:field="aNotice" />
-								</div>
-								
-								<p/>
-								</g:HTMLPanel>
-								<div>
-									<g:HTML ui:field="toNotice" />
+									<ge:StringEntityModelTextBox ui:field="activeCode" addStyleNames="abt-code-input" />
+									<w:PatternflyUiCommandButton ui:field="activatButton" label="{constants.activation}" addStyleNames="btn btn-reg" />
 								</div>
 							</g:HTMLPanel>
-				      </g:HTMLPanel>
-				</g:HorizontalPanel>
-			</g:VerticalPanel>
+							<g:HTMLPanel ui:field="servicePanel" addStyleNames="pull-right" />
+						</g:HTMLPanel>
+						<g:HTMLPanel addStyleNames="abt-main-right col-md-5">
+							<g:HTMLPanel>
+								<p>本系统License注册码：</p>
+								<strong class="abt-code-lb">
+									<g:InlineLabel ui:field="pollCode" />
+								</strong>
+							</g:HTMLPanel>
+							<g:HTMLPanel ui:field="mailContent" />
+						</g:HTMLPanel>
+					</g:HTMLPanel>
+				</g:HTMLPanel>
+			</g:HTMLPanel>
 		</d:content>
 
 		<d:footerButton>

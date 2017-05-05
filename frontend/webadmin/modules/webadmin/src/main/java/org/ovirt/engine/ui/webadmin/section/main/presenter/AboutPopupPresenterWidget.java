@@ -2,37 +2,28 @@ package org.ovirt.engine.ui.webadmin.section.main.presenter;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.ovirt.engine.core.common.action.ActivCodeParameters;
 import org.ovirt.engine.core.common.action.VdcActionType;
 import org.ovirt.engine.core.common.action.VdcReturnValueBase;
 import org.ovirt.engine.core.common.queries.ConfigurationValues;
 import org.ovirt.engine.ui.common.presenter.AbstractPopupPresenterWidget;
-import org.ovirt.engine.ui.common.widget.editor.generic.StringEntityModelTextArea;
+import org.ovirt.engine.ui.common.widget.editor.generic.StringEntityModelTextBox;
 import org.ovirt.engine.ui.frontend.AsyncQuery;
 import org.ovirt.engine.ui.frontend.Frontend;
 import org.ovirt.engine.ui.frontend.INewAsyncCallback;
-import org.ovirt.engine.ui.uicommonweb.ErrorPopupManager;
-import org.ovirt.engine.ui.uicommonweb.TypeResolver;
 import org.ovirt.engine.ui.uicommonweb.dataprovider.AsyncDataProvider;
 import org.ovirt.engine.ui.uicompat.FrontendActionAsyncResult;
 import org.ovirt.engine.ui.uicompat.IFrontendActionAsyncCallback;
-import org.ovirt.engine.ui.webadmin.ApplicationConstants;
-import org.ovirt.engine.ui.webadmin.gin.AssetProvider;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.inject.Inject;
 
 /**
  * Implements the WebAdmin about dialog.
  */
 public class AboutPopupPresenterWidget extends AbstractPopupPresenterWidget<AboutPopupPresenterWidget.ViewDef> {
-
-    private final static ApplicationConstants constants = AssetProvider.getConstants();
 
     public interface ViewDef extends AbstractPopupPresenterWidget.ViewDef {
 
@@ -44,18 +35,23 @@ public class AboutPopupPresenterWidget extends AbstractPopupPresenterWidget<Abou
 
         HasClickHandlers getActivatButton();
 
-        StringEntityModelTextArea getActiveCode();
-
-        HTMLPanel getSuperUser();
-
-        void setCnterpriseVisible(boolean b);
-
+        StringEntityModelTextBox getActiveCode();
     }
 
     @Inject
     public AboutPopupPresenterWidget(EventBus eventBus, ViewDef view) {
         super(eventBus, view);
     }
+
+    /*
+    * LicenseNotice:
+    * 00: 基础版
+    * 01: 注册成功
+    * 11: 已经注册
+    * -10: 试用期已过
+    * 1-1: 试用期内
+    * -1-1: 非管理员用户
+    * */
 
     @Override
     protected void onReveal() {
@@ -71,14 +67,13 @@ public class AboutPopupPresenterWidget extends AbstractPopupPresenterWidget<Abou
                 String version = (String) result;
 
                 getView().setVersion(version);
-                getView().setLicenseNotice(constants.basicInfo());
+                getView().setLicenseNotice("00"); //$NON-NLS-1$ // 基础版
 
             }
         };
         AsyncDataProvider.getInstance().getRpmVersion(_asyncQuery);
 
-        if("Enterprise".equals(vsersion)){//$NON-NLS-1$
-
+        if("Enterprise".equalsIgnoreCase(vsersion)){//$NON-NLS-1$
             AsyncQuery _asyncQuery2 = new AsyncQuery();
             _asyncQuery2.setModel(this);
             _asyncQuery2.asyncCallback = new INewAsyncCallback() {
@@ -91,34 +86,29 @@ public class AboutPopupPresenterWidget extends AbstractPopupPresenterWidget<Abou
                     String[] d=data.split(",");//$NON-NLS-1$
                     for (String s : d) {
                         String[] m=s.split("=");//$NON-NLS-1$
-
-                            map.put(m[0], m[1]);
+                        map.put(m[0], m[1]);
                     }
 
                     String isActive=map.get("isActive");//$NON-NLS-1$
                     String timeOut=map.get("timeOut");//$NON-NLS-1$
                     String code=map.get("code");//$NON-NLS-1$
                     String isSuper=map.get("isSuper");//$NON-NLS-1$
-                    if("false".equals(isSuper)){//$NON-NLS-1$
-                        getView().getSuperUser().setVisible(false);
-                    }
-
                     if("true".equals(isActive)){//$NON-NLS-1$
-                        getView().setLicenseNotice(constants.activeState());
-                        getView().getSuperUser().setVisible(false);
-
-                    }else if("true".equals(timeOut)){//$NON-NLS-1$
-                        getView().setLicenseNotice(constants.pastDue());
-                    }else{
-                        getView().setLicenseNotice(constants.trialStatus());
+                        getView().setLicenseNotice("11");  //$NON-NLS-1$// 已成功
+                    } else {
+                        if("false".equals(isSuper)){//$NON-NLS-1$
+                            getView().setLicenseNotice("-1-1");//$NON-NLS-1$
+                        } else if("true".equals(timeOut)){//$NON-NLS-1$
+                            getView().setLicenseNotice("-10"); //$NON-NLS-1$ // 试用过期
+                        } else {
+                            getView().setLicenseNotice("1-1");//$NON-NLS-1$
+                        }
                     }
                     getView().setPollCode(code);
 
                 }
             };
             AsyncDataProvider.getInstance().getUuid(_asyncQuery2);
-
-        }else{
 
         }
 
@@ -142,12 +132,7 @@ public class AboutPopupPresenterWidget extends AbstractPopupPresenterWidget<Abou
                                 result.getState();
                                 VdcReturnValueBase vrvb = result.getReturnValue();
                                 if (vrvb.getSucceeded()) {
-                                    getView().setLicenseNotice(constants.activeState());
-                                    getView().getSuperUser().setVisible(false);
-                                    final ErrorPopupManager popupManager = (ErrorPopupManager) TypeResolver
-                                    .getInstance().resolve(ErrorPopupManager.class);
-                                    popupManager.setTitleName(constants.opeSuccess());
-                                    popupManager.show(constants.welSuccess());
+                                    getView().setLicenseNotice("01"); //$NON-NLS-1$   // 注册成功
                                 }
                             }
                         },
