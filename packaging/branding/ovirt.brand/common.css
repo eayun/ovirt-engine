@@ -169,7 +169,7 @@ logo used in the application header */
 
 .obrand_headerLogoImage {
     background-image: url(images/fs_engine_logo.png);
-    background-size: cover;
+    background-size: 100%;
     background-repeat: no-repeat;
     width: 264px;
     height: 15px !important;
