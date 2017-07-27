@@ -98,7 +98,7 @@ public class AuditLogableBase extends TimeoutBase {
     private String glusterVolumeName;
     private GlusterVolumeEntity glusterVolume;
     private String customId;
-    private String origin = "Eayun";
+    private String origin = "Fusionstack";
     private int customEventId = -1;
     private int eventFloodInSec = 0;
     private String customData = "";

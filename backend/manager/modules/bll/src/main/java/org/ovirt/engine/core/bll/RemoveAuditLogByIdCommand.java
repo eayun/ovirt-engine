@@ -16,7 +16,7 @@ import org.ovirt.engine.core.dal.dbbroker.DbFacade;
 
 public class RemoveAuditLogByIdCommand<T extends RemoveAuditLogByIdParameters> extends ExternalEventCommandBase<T> {
 
-    private static final String OVIRT="Eayun";
+    private static final String OVIRT="Fusionstack";
 
     public RemoveAuditLogByIdCommand(T parameters) {
         super(parameters);

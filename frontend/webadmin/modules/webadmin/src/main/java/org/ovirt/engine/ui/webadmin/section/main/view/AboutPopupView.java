@@ -55,9 +55,6 @@ public class AboutPopupView extends AbstractPopupView<SimpleDialogPanel> impleme
     HTMLPanel elseContent;
 
     @UiField
-    HTMLPanel servicePanel;
-
-    @UiField
     InlineLabel pollCode;
 
     @UiField
@@ -89,13 +86,12 @@ public class AboutPopupView extends AbstractPopupView<SimpleDialogPanel> impleme
     }
 
     private void initAboutMainContent() {
-        servicePanel.add(stylePanel(serviceInfoPanel(), "abt-ser-pos"));//$NON-NLS-1$
         mailContent.add(fetchRegCode());
     }
 
     @Override
     public void setVersion(String text) {
-        versionLabel.setText(dynamicMessages.ovirtVersionAbout(text));
+        versionLabel.setText("Fusionstack 超融合管理平台：企业版");//$NON-NLS-1$
     }
 
     @Override
@@ -197,8 +193,7 @@ public class AboutPopupView extends AbstractPopupView<SimpleDialogPanel> impleme
         h1.setText("欢迎使用！");//$NON-NLS-1$
         panel.add(h1);
         Paragraph p1 = new Paragraph();
-        p1.setText("EayunOS服务器虚拟化软件 " + (versionLabel.getText().indexOf("4.2") > -1//$NON-NLS-1$//$NON-NLS-2$
-                ? versionLabel.getText().substring(versionLabel.getText().indexOf("4.2")) : ""));//$NON-NLS-1$
+        p1.setText("Fusionstack超融合管理平台");//$NON-NLS-1$
         p1.setMarginBottom(30);
         panel.add(p1);
         Heading h2 = new Heading(HeadingSize.H3);
@@ -214,8 +209,7 @@ public class AboutPopupView extends AbstractPopupView<SimpleDialogPanel> impleme
         h1.setText("欢迎使用！");//$NON-NLS-1$
         panel.add(h1);
         Paragraph p1 = new Paragraph();
-        p1.setText("EayunOS服务器虚拟化软件 " + (versionLabel.getText().indexOf("4.2") > -1//$NON-NLS-1$//$NON-NLS-2$
-                ? versionLabel.getText().substring(versionLabel.getText().indexOf("4.2")) : ""));//$NON-NLS-1$
+        p1.setText("Fusionstack超融合管理平台");//$NON-NLS-1$
         p1.setMarginBottom(30);
         panel.add(p1);
         return panel;
@@ -257,11 +251,8 @@ public class AboutPopupView extends AbstractPopupView<SimpleDialogPanel> impleme
         h1.setText("如何获取激活码？");//$NON-NLS-1$
         panel.add(h1);
         Paragraph p1 = new Paragraph();
-        p1.setText("请您将下列信息，通过电子邮件发送至：");//$NON-NLS-1$
+        p1.setText("请您将下列信息，通过电子邮件发送至华云网际");//$NON-NLS-1$
         panel.add(p1);
-        Strong s1 = new Strong();
-        s1.setText("license@eayun.com");//$NON-NLS-1$
-        panel.add(s1);
         UnorderedList list = new UnorderedList();
         list.setMarginTop(20);
         ListItem li1 = new ListItem();

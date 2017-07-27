@@ -46,7 +46,6 @@ public class HeaderView extends AbstractHeaderView implements HeaderPresenterWid
         this.logoutLink = new Anchor(constants.logoutLinkLabel());
         this.optionsLink = new Anchor(constants.optionsLinkLabel());
         this.aboutLink = new Anchor(constants.aboutLinkLabel());
-        this.guideLink = new Anchor(dynamicMessages.guideLinkLabel());
         initWidget(ViewUiBinder.uiBinder.createAndBindUi(this));
         ViewIdHandler.idHandler.generateAndSetIds(this);
     }

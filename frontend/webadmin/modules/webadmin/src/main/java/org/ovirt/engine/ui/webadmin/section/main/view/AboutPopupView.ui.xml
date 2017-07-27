@@ -29,7 +29,7 @@
 						<g:HTMLPanel addStyleNames="col-md-7 abt-main-left">
 							<g:HTMLPanel>
 								<h2 style="padding-top:10px; padding-bottom: 20px">欢迎使用！</h2>
-								<p>EayunOS服务器虚拟化软件提供免费使用期30天</p>
+								<p>Fusionstack超融合管理平台提供免费使用期30天</p>
 								<p>到期后将影响您的正常使用，请您尽快完成注册激活！</p>
 								<g:HTMLPanel ui:field="probtStatus"></g:HTMLPanel>
 							</g:HTMLPanel>
@@ -40,7 +40,6 @@
 									<w:PatternflyUiCommandButton ui:field="activatButton" label="{constants.activation}" addStyleNames="btn btn-reg" />
 								</div>
 							</g:HTMLPanel>
-							<g:HTMLPanel ui:field="servicePanel" addStyleNames="pull-right" />
 						</g:HTMLPanel>
 						<g:HTMLPanel addStyleNames="abt-main-right col-md-5">
 							<g:HTMLPanel>

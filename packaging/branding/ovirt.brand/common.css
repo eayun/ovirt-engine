@@ -121,7 +121,9 @@ popup windows, for instance for creating a new VM */
    app logo, positioned in the top right of login screen */
 
 .obrand_loginPageLogoImage {
-    background-image: url(images/logo.png);
+    background-image: url(images/fs_logo.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
     width: 110px;
     height: 40px;
     border: 0px;
@@ -166,7 +168,9 @@ popup windows, for instance for creating a new VM */
 logo used in the application header */
 
 .obrand_headerLogoImage {
-    background-image: url(images/EayunOS_top_logo_basic.png);
+    background-image: url(images/fs_engine_logo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
     width: 264px;
     height: 15px !important;
     border: 0px;

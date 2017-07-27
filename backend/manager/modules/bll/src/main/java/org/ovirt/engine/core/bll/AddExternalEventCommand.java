@@ -18,7 +18,7 @@ import org.ovirt.engine.core.dao.StorageDomainDynamicDao;
 import org.ovirt.engine.core.dao.VdsDynamicDao;
 
 public class AddExternalEventCommand<T extends AddExternalEventParameters> extends ExternalEventCommandBase<T> {
-    private static final String OVIRT="Eayun";
+    private static final String OVIRT="Fusionstack";
 
     @Inject VdsDynamicDao hostDao;
 

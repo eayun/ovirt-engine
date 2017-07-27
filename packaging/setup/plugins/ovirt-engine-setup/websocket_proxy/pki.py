@@ -144,7 +144,7 @@ class Plugin(plugin.PluginBase):
 
             with contextlib.closing(
                 urllib2.urlopen(
-                    'http://{engine_fqdn}/eayunos/services/'
+                    'http://{engine_fqdn}/fusionstack/services/'
                     'pki-resource?resource=engine-certificate&'
                     'format=X509-PEM'.format(
                         engine_fqdn=remote_engine_host

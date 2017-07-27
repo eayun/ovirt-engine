@@ -47,9 +47,6 @@
                         </ul>
                     </li>
                     <li>
-                        <g:Anchor ui:field="guideLink" addStyleNames="{style.topLinks}" />
-                    </li>
-                    <li>
                         <g:Anchor ui:field="aboutLink" addStyleNames="{style.topLinks}" />
                     </li>
                 </ul>

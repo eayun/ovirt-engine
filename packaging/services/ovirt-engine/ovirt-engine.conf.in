@@ -148,7 +148,7 @@ ENGINE_JAVA_MODULEPATH="${ENGINE_USR}/modules/common"
 # /usr/share/ovirt-engine:
 #
 ENGINE_APPS="engine.ear restapi.war legacy_restapi.war"
-ENGINE_URI=/eayunos
+ENGINE_URI=/fusionstack
 
 #
 # Flags to enable or disable the web server (the proxy) and the
@@ -250,7 +250,7 @@ ENGINE_REPORTS_VERIFY_HOST=true
 ENGINE_REPORTS_VERIFY_CHAIN=true
 ENGINE_REPORTS_READ_TIMEOUT=
 ENGINE_REPORTS_RIGHTCLICK_URL=
-ENGINE_REPORTS_NOT_INSTALLED_URL=/eayunos/ReportsNotInstalled.html
+ENGINE_REPORTS_NOT_INSTALLED_URL=/fusionstack/ReportsNotInstalled.html
 
 ENGINE_EXTENSION_PATH="${ENGINE_USR}/extensions.d:${ENGINE_ETC}/extensions.d"
 

@@ -48,19 +48,19 @@
 	  
 	   <htl:Div addStyleNames="lg_head clearfix">
 				<htl:Div addStyleNames="z lgh_l">
-							<b:ImageAnchor styleName="obrand_loginPageLogoImage" href="http://eayun.cn/" />
+							<b:ImageAnchor styleName="obrand_loginPageLogoImage" />
 							<htl:Span ui:field="titlefield" addStyleNames="title"/>
 				</htl:Div>
 				<htl:Div addStyleNames="y lgh_r">
 							<w:PatternflyUiCommandButton ui:field="clientButton" addStyleNames="khddown" />
 							<htl:Div addStyleNames="drop clearfix">
 								<htl:Div addStyleNames="z dp_l">
-									<b:ImageAnchor styleName="window_loginPageImage" href="http://eayun.cn/" />
+									<b:ImageAnchor styleName="window_loginPageImage" />
 									<g:Anchor  ui:field="btn32" addStyleNames="btn32"/>
 									<g:Anchor ui:field="btn64"  addStyleNames="btn64"/>
 								</htl:Div>
 								<htl:Div addStyleNames="z dp_r">
-									<b:ImageAnchor styleName="linux_loginPageImage" href="http://eayun.cn/" />
+									<b:ImageAnchor styleName="linux_loginPageImage" />
 									<g:Anchor ui:field="btnlinux"  addStyleNames="btnln"/>
 								</htl:Div>
 							</htl:Div>
@@ -87,7 +87,7 @@
 				
 						
 				</htl:Div>		
-				<htl:Paragraph  styleName="fontbai wrapper">© 2011-2017 易云捷讯科技（北京）股份有限公司, 版权所有 | © 2011-2017 Eayun,Inc. All rights reserved. </htl:Paragraph>
+				<htl:Paragraph  styleName="fontbai wrapper">© 2011-2017 北京华云网际科技有限公司, 版权所有 | © 2011-2017 Fusionstack,Inc. All rights reserved. </htl:Paragraph>
 					
 		
 		</g:HTMLPanel>

@@ -421,7 +421,7 @@ public enum ConfigValues {
     EventProcessingPoolSize,
     @Reloadable
     @TypeConverterAttribute(String.class)
-    @DefaultValueAttribute("Eayun")
+    @DefaultValueAttribute("Fusionstack")
     OrganizationName,
     @Reloadable
     @TypeConverterAttribute(Boolean.class)
@@ -1025,7 +1025,7 @@ public enum ConfigValues {
      * The origin type to be used for VM and VM template creation
      */
     @TypeConverterAttribute(String.class)
-    @DefaultValueAttribute("Eayun")
+    @DefaultValueAttribute("Fusionstack")
     OriginType,
 
     @TypeConverterAttribute(Boolean.class)

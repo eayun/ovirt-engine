@@ -22,10 +22,6 @@ public abstract class AbstractHeaderView extends AbstractView {
 
     @UiField(provided = true)
     @WithElementId
-    public Anchor guideLink = null;
-
-    @UiField(provided = true)
-    @WithElementId
     public Anchor aboutLink = null;
 
     @UiField(provided = true)
@@ -42,10 +38,6 @@ public abstract class AbstractHeaderView extends AbstractView {
 
     public HasClickHandlers getAboutLink() {
         return aboutLink;
-    }
-
-    public HasClickHandlers getGuideLink() {
-        return guideLink;
     }
 
     public HasClickHandlers getOptionsLink() {

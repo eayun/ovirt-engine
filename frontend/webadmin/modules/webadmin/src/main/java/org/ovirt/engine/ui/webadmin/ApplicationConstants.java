@@ -4,13 +4,13 @@ import org.ovirt.engine.ui.common.CommonApplicationConstants;
 
 public interface ApplicationConstants extends CommonApplicationConstants {
 
-    @DefaultStringValue("EayunOS Web Administration")
+    @DefaultStringValue("Web Administration")
     String applicationTitle();
 
     @DefaultStringValue("About")
     String aboutPopupCaption();
 
-    @DefaultStringValue("EayunOS Version:")
+    @DefaultStringValue("Version:")
     String ovirtVersionAbout();
     //basic
     @DefaultStringValue("Basic")
@@ -71,13 +71,13 @@ public interface ApplicationConstants extends CommonApplicationConstants {
     @DefaultStringValue("Client download")
     String clientDownload();
 
-    @DefaultStringValue("32 bit EayunOS4.2 client")
+    @DefaultStringValue("32 bit Fustionstack client")
     String btn32();
 
-    @DefaultStringValue("64 bit EayunOS4.2 client")
+    @DefaultStringValue("64 bit Fustionstack client")
     String btn64();
 
-    @DefaultStringValue("EayunOS4.2 Linux client")
+    @DefaultStringValue("Fustionstack Linux client")
     String btnlinux();
 
     @DefaultStringValue("enter one user name")
@@ -86,7 +86,7 @@ public interface ApplicationConstants extends CommonApplicationConstants {
     @DefaultStringValue("please input a password")
     String inputpwd();
 
-    @DefaultStringValue("EayunOS 4.2 server virtualization")
+    @DefaultStringValue("Fusionstack Management Platform")
     String titlefield();
 
     @DefaultStringValue("User login")
