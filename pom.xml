@@ -33,7 +33,7 @@
   </modules>
 
   <properties>
-    <application.baseuri>/fusionstack/api</application.baseuri>
+    <application.baseuri>/eayunos/api</application.baseuri>
     <!--  Version Info -->
     <engine.version>${project.version}</engine.version>
 

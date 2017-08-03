@@ -421,7 +421,7 @@ class Const(object):
     MINIMUM_SPACE_ISODOMAIN_MB = 350
     ISO_DOMAIN_IMAGE_UID = '11111111-1111-1111-1111-111111111111'
 
-    ENGINE_URI = '/fusionstack'
+    ENGINE_URI = '/eayunos'
     ENGINE_PKI_CA_URI = (
         '%s/services/pki-resource?'
         'resource=ca-certificate&'

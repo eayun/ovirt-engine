@@ -199,35 +199,35 @@
               <groupId>org.ovirt.engine.ui</groupId>
               <artifactId>userportal</artifactId>
               <bundleFileName>userportal.war</bundleFileName>
-              <contextRoot>/fusionstack/userportal</contextRoot>
+              <contextRoot>/eayunos/userportal</contextRoot>
             </webModule>
 
             <webModule>
               <groupId>org.ovirt.engine.ui</groupId>
               <artifactId>webadmin</artifactId>
               <bundleFileName>webadmin.war</bundleFileName>
-              <contextRoot>/fusionstack/webadmin</contextRoot>
+              <contextRoot>/eayunos/webadmin</contextRoot>
             </webModule>
 
             <webModule>
               <groupId>org.ovirt.engine.core</groupId>
               <artifactId>services</artifactId>
               <bundleFileName>services.war</bundleFileName>
-              <contextRoot>/fusionstack/services</contextRoot>
+              <contextRoot>/eayunos/services</contextRoot>
             </webModule>
 
             <webModule>
               <groupId>org.ovirt.engine.core</groupId>
               <artifactId>docs</artifactId>
               <bundleFileName>docs.war</bundleFileName>
-              <contextRoot>/fusionstack/docs</contextRoot>
+              <contextRoot>/eayunos/docs</contextRoot>
             </webModule>
 
             <webModule>
               <groupId>org.ovirt.engine.core</groupId>
               <artifactId>welcome</artifactId>
               <bundleFileName>welcome.war</bundleFileName>
-              <contextRoot>/fusionstack</contextRoot>
+              <contextRoot>/eayunos</contextRoot>
             </webModule>
 
             <!-- ** EJB-JARs -->

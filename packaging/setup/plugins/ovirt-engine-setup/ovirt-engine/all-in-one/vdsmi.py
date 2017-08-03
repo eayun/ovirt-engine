@@ -113,7 +113,7 @@ class Plugin(plugin.PluginBase):
                 # Maybe in the future we can just rely on a
                 # not authenticated health API URL
                 sdk = self._ovirtsdk_api.API(
-                    url='https://localhost:{port}/fusionstack/api'.format(
+                    url='https://localhost:{port}/eayunos/api'.format(
                         port=self.environment[
                             oengcommcons.ConfigEnv.PUBLIC_HTTPS_PORT
                         ],

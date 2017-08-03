@@ -63,7 +63,7 @@ def _base_url_from_env(env):
                 oengcommcons.ConfigEnv.JBOSS_DIRECT_HTTP_PORT
             ]
 
-    return "{proto}://{fqdn}:{port}/fusionstack/".format(
+    return "{proto}://{fqdn}:{port}/eayunos/".format(
         proto=proto,
         fqdn=env[osetupcons.ConfigEnv.FQDN],
         port=port,

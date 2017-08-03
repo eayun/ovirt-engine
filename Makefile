@@ -394,7 +394,7 @@ install_artifacts:
 		"$(DESTDIR)$(DATA_DIR)/restapi.war" \
 		"$(DESTDIR)$(DATA_DIR)/legacy_restapi.war"
 	sed -i \
-		's|<context-root>/fusionstack/api</context-root>|<context-root>/api</context-root>|' \
+		's|<context-root>/eayunos/api</context-root>|<context-root>/api</context-root>|' \
 		"$(DESTDIR)$(DATA_DIR)/legacy_restapi.war/WEB-INF/jboss-web.xml"
 	sed -i \
 		's|<param-value>Basic realm="RESTAPI"</param-value>|<param-value>Basic realm="ENGINE"</param-value>|' \

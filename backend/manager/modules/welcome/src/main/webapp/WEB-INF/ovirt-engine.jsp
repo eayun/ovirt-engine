@@ -12,6 +12,6 @@ alert(111);
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 </head>
 <body>
-   <%response.sendRedirect("/fusionstack/webadmin/?locale=zh_CN#login"); %>
+   <%response.sendRedirect("/eayunos/webadmin/?locale=zh_CN#login"); %> 
 </body>
 </html>
